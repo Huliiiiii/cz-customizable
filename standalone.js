@@ -10,7 +10,8 @@ log.info('cz-customizable standalone version');
 
 const commit = (commitMessage) => {
   try {
-    execSync(`git commit -m "${commitMessage}"`, { stdio: [0, 1, 2] });
+    const msg = commitMessage.split('\n').map((n) => `-m '${n}'`).join(' ');
+    execSync(`git commit -m "${msg}"`, { stdio: [0, 1, 2] });
   } catch (error) {
     log.error('>>> ERROR', error.error);
   }
