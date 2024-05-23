@@ -9,12 +9,11 @@
     "cz-cust": "./standalone.js"
   },
   "scripts": {
-    "lint": "node_modules/eslint/bin/eslint.js *.js __tests__/**.js",
+    "format": "npx prettier --single-quote --trailing-comma es5 --write *.js lib/**/*.js __tests__/**.js && npx eslint lib/**/*.js __tests__/**.js --fix && npx eslint lib/**/*.js __tests__/**.js",
     "test": "jest",
     "test:watch": "jest -- --watch",
     "semantic-release": "semantic-release",
-    "prettier": "prettier --single-quote --trailing-comma es5 --write '*.js' 'spec/**/*.js'",
-    "commit": "npm run lint && npm run test && ./standalone.js"
+    "commit": "npm run format && npm run test && ./standalone.js"
   },
   "homepage": "https://github.com/leoforfree/cz-customizable",
   "repository": {
@@ -57,7 +56,7 @@
       "config": "cz-config-EXAMPLE.js"
     },
     "ghooks": {
-      "pre-commit": "npm run lint && npm run test"
+      "pre-commit": "npm run format && npm run test"
     }
   }
 }
